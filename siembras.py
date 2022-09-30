@@ -40,17 +40,47 @@ tablaSiembras = pd.read_csv('./Siembras.csv')
 #archivoTEXTO.write(archivoHTML)
 #archivoTEXTO.close()
 # Datos Caucasia
-#tablaMunicipios2=tablaSiembras[(tablaSiembras["Ciudad"]=="Caucasia") & (tablaSiembras["Hectareas"].head(50))]
-#tablaMunicipios2=tablaSiembras[tablaSiembras["Ciudad"]=="Caucasia"]
-#tablaMunicipios2=tablaMunicipios2["Hectareas"]
+#tablaMunicipios2=tablaSiembras[tablaSiembras["Ciudad"]=="Caucasia"].filter(like='Hectareas')
 #archivoHTML=tablaMunicipios2.to_html()
-#archivoTEXTO=open("tablacaucasia.html","w",encoding="utf-8")
+#archivoTEXTO=open("datoscaucasia.html","w",encoding="utf-8")
 #archivoTEXTO.write(archivoHTML)
 #archivoTEXTO.close()
 # Datos Santa fe de antioquia
-tablaMunicipios2=tablaSiembras[(tablaSiembras["Ciudad"]=="Santa Fe de Antioquia") & (tablaSiembras["Arboles"]>250)]
-tablaMunicipios2=tablaMunicipios2.sort_values(by="Hectareas",ascending=False)
-archivoHTML=tablaMunicipios2.to_html()
-archivoTEXTO=open("datossantafe.html","w",encoding="utf-8")
+#tablaMunicipios2=tablaSiembras[tablaSiembras["Ciudad"]=="Santa Fe de Antioquia"].filter(like='Arboles'>250)
+#archivoHTML=tablaMunicipios2.to_html()
+#archivoTEXTO=open("datossantafe.html","w",encoding="utf-8")
+#archivoTEXTO.write(archivoHTML)
+#archivoTEXTO.close()
+#  Datos de caramanta
+#tablaMunicipios2=tablaSiembras[tablaSiembras["Ciudad"]=="Caramanta"].head(50)
+#archivoHTML=tablaMunicipios2.to_html()
+#archivoTEXTO=open("datoscaramanta.html","w",encoding="utf-8")
+#archivoTEXTO.write(archivoHTML)
+#archivoTEXTO.close()
+#  Datos de Belmira
+#tablaBelmira=tablaSiembras[tablaSiembras["Ciudad"]=="Belmira"]
+#tablaVeredasBelmira=tablaBelmira[(tablaBelmira['Vereda']=="Rio Arriba")|(tablaBelmira['Vereda']=="La Salazar")] 
+#print(tablaVeredasBelmira)
+#archivoHTML=tablaVeredasBelmira.to_html()
+#archivoTEXTO=open("datosbelmira.html","w",encoding="utf-8")
+#archivoTEXTO.write(archivoHTML)
+#archivoTEXTO.close()
+#  Datos medias bello
+tablaBello=tablaSiembras[tablaSiembras["Ciudad"]=="Bello"]
+tablaVeredasBello=tablaBello[(tablaBello['Vereda']=="Quitasol")] 
+tablaVeredasBello=tablaVeredasBello.sort_values(by="Arboles",ascending=True)
+estadisticas=tablaBello.describe()
+medias=estadisticas.loc[['mean']]
+mediasArboles=medias["Arboles"].to_frame()
+archivoHTML=mediasArboles.to_html()
+archivoTEXTO=open("datosmediasbello.html","w",encoding="utf-8")
+archivoTEXTO.write(archivoHTML)
+archivoTEXTO.close()
+# Datos bello 
+tablaBello=tablaSiembras[tablaSiembras["Ciudad"]=="Bello"]
+tablaVeredasBello=tablaBello[(tablaBello['Vereda']=="Quitasol")] 
+tablaVeredasBello=tablaVeredasBello.sort_values(by="Arboles",ascending=True)
+archivoHTML=tablaVeredasBello.to_html()
+archivoTEXTO=open("datosbello.html","w",encoding="utf-8")
 archivoTEXTO.write(archivoHTML)
 archivoTEXTO.close()
